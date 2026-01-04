@@ -7,11 +7,14 @@ import ui.menu.settings.SettingsMenu.NumericStepperOption;
 
 class Options_Window extends SettingsCategory
 {
+	#if !mac
 	var checkbox_darkMode:CheckboxOption;
+	#end
 	var stepper_fps:NumericStepperOption;
 
 	public override function init()
 	{
+		#if !mac
 		checkbox_darkMode = new CheckboxOption(400, 600, {
 			name: LanguageManager.getTextString('settings_window_darkMode'),
 			description: LanguageManager.getTextString('settings_window_darkMode_description'),
@@ -22,6 +25,7 @@ class Options_Window extends SettingsCategory
 		});
 		checkbox_darkMode.setChecked(Preferences.darkMode, false, true);
 		checkbox_darkMode.canInteract = !Preferences.borderless;
+		#end
 
 		stepper_fps = new NumericStepperOption(375, 300, {
 			name: LanguageManager.getTextString('settings_window_fps'),
