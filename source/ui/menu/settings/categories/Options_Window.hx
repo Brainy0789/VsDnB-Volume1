@@ -51,7 +51,9 @@ class Options_Window extends SettingsCategory
 			{
 				Preferences.borderless = value;
 
+				#if !mac
 				checkbox_darkMode.canInteract = !value;
+				#end
 			}
 		});
 		checkbox_borderless.setChecked(Preferences.borderless, false, true);
@@ -72,8 +74,10 @@ class Options_Window extends SettingsCategory
 		add(checkbox_vsync);
 
 		// Make sure this gets added last so it fits last in the group.
+		#if !mac
 		list.push(checkbox_darkMode);
 		add(checkbox_darkMode);
+		#end
 	}
 	
 	override function getName():String
